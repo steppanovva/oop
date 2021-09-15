@@ -1,4 +1,3 @@
-using System;
 using Isu.Services;
 using Isu.Tools;
 using NUnit.Framework;
@@ -8,9 +7,7 @@ namespace Isu.Tests
     [TestFixture]
     public class Tests
     {
-        private IIsuService _isuService;
-
-        public Services.Isu TestIsu { get; set; }
+        private Services.Isu TestIsu = new Isu.Services.Isu() { };
 
         [Test]
         public void AddStudentToGroup_StudentHasGroupAndGroupContainsStudent()
@@ -51,9 +48,5 @@ namespace Isu.Tests
             Assert.AreEqual(student.Group.GroupName, group2.GroupName);
             Assert.IsTrue(group2.Students.Exists(x => x.Id == student.Id));
         }
-    }
-
-    public class TestAttribute : Attribute
-    {
     }
 }
