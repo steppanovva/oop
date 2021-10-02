@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Linq;
 using Isu.Tools;
 
@@ -21,13 +20,13 @@ namespace Isu.Services
             students = new List<Student>();
         }
 
-        public Group AddGroup(GroupName groupName)
+        public Group AddGroup(GroupName name)
         {
-            if (groups.Exists(x => x.GroupName.ToString() == groupName.ToString()))
-                throw new IsuException("Group " + groupName.ToString() + " already added");
-            if (!IsGroupNameValid(groupName))
-                throw new IsuException("Entered groupName " + groupName.ToString() + " is invalid");
-            groups.Add(new Group() { GroupName = groupName, Students = new List<Student>() });
+            if (groups.Exists(x => x.GroupName.ToString() == name.ToString()))
+                throw new IsuException("Group " + name.ToString() + " already added");
+            if (!IsGroupNameValid(name))
+                throw new IsuException("Entered groupName " + name.ToString() + " is invalid");
+            groups.Add(new Group() { GroupName = name, Students = new List<Student>() });
             return groups.Last();
         }
 
@@ -67,7 +66,7 @@ namespace Isu.Services
         public Group FindGroup(GroupName groupName)
         {
             if (groups.Exists(x => x.GroupName.ToString() == groupName.ToString()))
-                return groups.Find(x => x.GroupName.ToString().Equals(groupName.ToString()));
+                return groups.Find(x => x.GroupName.ToString() == groupName.ToString());
             throw new IsuException("There is no " + groupName + " group");
         }
 
@@ -85,15 +84,15 @@ namespace Isu.Services
             return groups.Where(x => x.GroupName.NumberOfCourse == courseNumber.Number).ToList();
         }
 
-        public void ChangeStudentGroup(Student student, Group group)
+        public void ChangeStudentGroup(Student student, Group newGroup)
         {
             if (!students.Exists(x => x.Name == student.Name))
                 throw new IsuException("There is no " + student.Name + " " + student.Id + " in the list of students");
-            if (!groups.Exists(x => x.GroupName.ToString() == group.GroupName.ToString()))
-                throw new IsuException("There is no " + group.GroupName + " group");
+            if (!groups.Exists(x => x.GroupName.ToString() == newGroup.GroupName.ToString()))
+                throw new IsuException("There is no " + newGroup.GroupName + " group");
             student.Group.Students.Remove(student);
-            student.Group.GroupName = group.GroupName;
-            group.Students.Add(student);
+            student.Group.GroupName = newGroup.GroupName;
+            newGroup.Students.Add(student);
         }
 
         public void RemoveGroup(GroupName groupName)
