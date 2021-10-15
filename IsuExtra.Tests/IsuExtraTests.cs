@@ -32,7 +32,7 @@ namespace IsuExtra.Tests
             var schedule = new Dictionary<string, List<Lesson>> {{"Monday", lessons}};
             Group group = _testIsuExtra.AddGroup(new GroupName() {NumberOfCourse = 2, NumberOfGroup = 5});
             group.Lessons = schedule;
-            Student student = _testIsuExtra.AddStudent(group, "Van");
+            Student student = _testIsuExtra.AddStudent(group, "T");
             var course1 = new Course { Streams = new List<Stream> { _streamOfFirstDiscipline, _streamOfSecondDiscipline} };
             var course2 = new Course { Streams = new List<Stream> { _streamOfFirstDiscipline, _streamOfSecondDiscipline} };
             Ognp ognp = _testIsuExtra.AddOgnp("Faculty 1", course1, course2);
@@ -48,7 +48,7 @@ namespace IsuExtra.Tests
         {
             var lessons = new List<Lesson> { new() {LectureStart = "11:40", Lector = "Lector"}, new() {LectureStart = "13:30", Lector = "Lector"}};
             var schedule = new Dictionary<string, List<Lesson>> {{"Monday", lessons}};
-            Group group = _testIsuExtra.AddGroup(new GroupName() {NumberOfCourse = 2, NumberOfGroup = 5});
+            Group group = _testIsuExtra.AddGroup(new GroupName() {NumberOfCourse = 2, NumberOfGroup = 6});
             group.Lessons = schedule;
             Student student = _testIsuExtra.AddStudent(group, "Van");
             var course1 = new Course { Streams = new List<Stream> { _streamOfFirstDiscipline, _streamOfSecondDiscipline} };
