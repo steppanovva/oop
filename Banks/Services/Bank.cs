@@ -20,6 +20,7 @@ namespace Banks.Services
         public delegate void BaseCreditLimitChanged(string message);
         public event MaxSumChanged NotifyMaxSumChanged;
         public event BaseCreditLimitChanged NotifyBaseCreditLimitChanged;
+        public static int Id { get; set; } = 0;
         public string Name { get; set; }
         public double Commission { get; }
         public double BaseCreditLimit { get; private set; }

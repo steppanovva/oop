@@ -5,6 +5,7 @@
         protected Account(Client client)
         {
             Owner = client;
+            client.Account = this;
         }
 
         public Client Owner { get; }
