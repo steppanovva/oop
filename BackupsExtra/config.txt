@@ -1,0 +1,12 @@
+WayOfLogging
+console
+PathToLog 
+C:\\GitHub\\steppanovva\\BackupsExtra\\RootRepository\\log.txt
+MaxNumberOfPoints 
+3
+ModeOfLimitation 
+1
+IsTimePrefixInLogNeeded 
+yes
+PathToRestorePoints
+C:\\GitHub\\steppanovva\\BackupsExtra\\RootRepository
