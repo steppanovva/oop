@@ -24,8 +24,11 @@ namespace Backups.Services
 
                     string pathToZip = pathToRestorePoints + "/" + Name + "/" + jobObject.FileName + "_" +
                                        BackupJob.RestorePointId + ".zip";
-                    ZipArchive zipArchive = ZipFile.Open(pathToZip, ZipArchiveMode.Create);
-                    zipArchive.CreateEntryFromFile(jobObject.FilePath, jobObject.FileName);
+                    using (ZipArchive zipArchive = ZipFile.Open(pathToZip, ZipArchiveMode.Update))
+                    {
+                        zipArchive.CreateEntryFromFile(jobObject.FilePath, jobObject.FileName);
+                    }
+
                     FilesInPoint.Add(jobObject.FileName);
                 }
             }
@@ -37,7 +40,8 @@ namespace Backups.Services
                     Directory.CreateDirectory(pathToRestorePoints + "/" + Name);
                 if (File.Exists(pathToZip))
                     throw new BackupException("Archive already exists");
-                ZipArchive zipArchive = ZipFile.Open(pathToZip, ZipArchiveMode.Create);
+
+                using ZipArchive zipArchive = ZipFile.Open(pathToZip, ZipArchiveMode.Update);
                 foreach (JobObject jobObject in jobObjects)
                 {
                     zipArchive.CreateEntryFromFile(jobObject.FilePath, jobObject.FileName);
