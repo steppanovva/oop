@@ -88,6 +88,7 @@ namespace BackupsExtra.Tests
                 RestorePointExtra restorePoint1 = backupJob.CreateRestorePoint();
             });
         }
+        
 
         // [Test]
         public void RestoreFromBackUp_Restored()
